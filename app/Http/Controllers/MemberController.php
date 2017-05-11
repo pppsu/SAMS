@@ -5,31 +5,58 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Student;
 use App\Organization;
-use App\User;
 use Redirect;
+use Validator;
 
 class MemberController extends Controller
 {
-
-     public function __construct()
-    {
-        $this->middleware('auth');
-    }
-    
     public function index() {
-        $students = Student::where('role','=','Member')->paginate(20);
-        $students->setPath('Member');
+
+
+        $students = Student::join('organizations','students.org_id','=','organizations.id')
+        ->select('students.*','organizations.org_name')->get();
+
 
         return view('staff.in_clubmember')->with('students',$students);
     }
 
     public function create() {
-        $organization = Organization::select('org_id','org_name')->get();
+        $organization = Organization::select('id','org_name')->get();
     	
         return view('staff.add_clubmember')->with('organization',$organization);
     }
 
     public function insert(Request $request) {
+
+         $rules = [
+        'id' => 'required',
+    
+
+        'firstname' => 'required',
+        'lastname' => 'required',
+        'email' => 'required',
+        'begin_date' => 'required',
+        'end_date' => 'required'    
+        ];
+
+        $messages = [
+        'id.required' => 'Please Enter Adviser ID',
+        'firstname.required' => 'Please Enter Name',
+        'lastname.required' => 'Please Enter Lastname',
+
+        'faculty.required' => 'Please Enter Faculty',
+        'major.required' => 'Please Enter Major',
+        'org_id.required' => 'Please Select Organization',
+        'position.required' => 'Please Select Position',
+        'email.required' => 'Please Enter Email',
+        'phone.required' => 'Please Enter Phone',
+        'begin_date.required' => 'Please Enter Begin Date',
+        'end_date.required' => 'Please Enter End Date',
+
+        ];
+        $validator = Validator::make($request->all(),$rules, $messages); 
+        /*$validator = Validator::make($request->all(),$rules);*/
+         if ($validator->passes() ){
     	$student = new Student;
     	$student->psu_passport = $request->input('id');
     	$student->title = $request->input('title');
@@ -44,29 +71,27 @@ class MemberController extends Controller
     	$student->end_date = $request->input('end_date');
     	$student->phone = $request->input('phone');
     	$student->email = $request->input('email');
-
     	$student->save();
 
-        $user = new User;
-        $user->psu_pass = $request->input('id');
-        $user->name = $request->input('firstname');
-        $user->email = $request->input('email');
-        $user->password = bcrypt($request->input('phone'));
-        $user->admin = 0;
-
-        $user->save();
     	return Redirect::to('Member');
+        }
+        else{
+            return Redirect::to('/addMember')
+            ->withErrors($validator->messages());
+        }
     }
+    
 
     public function edit($id) {
         $student = Student::find($id);
-        $organization = Organization::select('org_id','org_name')->get();
+        $organization = Organization::select('id','org_name')->get();
         //echo $student;
         return view('staff.edit_clubmember')->with('student',$student)
         ->with('organization',$organization);
     }
 
     public function update($id,Request $request) {
+        echo $id;
         $student = Student::find($id);
         $student->psu_passport = $request->input('id');
         $student->title = $request->input('title');

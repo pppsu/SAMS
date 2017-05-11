@@ -21,7 +21,7 @@ Staff
 		<div class="col s12 m12 l12">
 			<div class="card-panel ">
 				@foreach ( $organization as $org)
-				<form method="POST" action="organizeation/update/{{ $org->org_id }}">
+				<form method="POST" action="organizeation/update/{{ $org->id }}">
 					<div class="col l12 m12 s12"><h4>Please Enter you information</h4></div><br><br><br><br>
 					<div class="row">
 						<div class="input-field  col s12 l6 m6">
@@ -64,8 +64,8 @@ Staff
 							</div>
 						</div>
 						<div class="input-field col s12 l3 m3 ">
-							<input id="psu_passport" type="text" class="validate" name="id" value="{{ $org->psu_passport }}">
-							<label for="psu_passport">Adviser ID</label>          
+							<input id="adv_id" type="text" class="validate" name="adv_id" value="{{ $org->psu_passport }}">
+							<label for="adv_id">Adviser ID</label>          
 						</div>
 					</div>
 					<div class="row">

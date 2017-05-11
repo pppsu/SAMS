@@ -18,6 +18,15 @@ Staff
 </section>
 <section>
 	<div class="row">
+		@if ( count($errors) > 0 )
+				<div class="card-panel red accent-1">
+					<ul>
+						@foreach ($errors->all() as $error)
+						<li>{{$error}}</li>
+						@endforeach
+					</ul>
+				</div>
+				@endif
 		<form method="POST" action="/SAMSn/public/addMember">
 					<div class="col l12 m12 s12"><h4>Please Enter Your Information</h4></div><br><br><br><br>
 
@@ -39,7 +48,6 @@ Staff
 					<div class="row">					
 						<div class="input-field col s6">
 							<select name="title">
-								<option value="" disabled selected>Choose your title</option>
 								<option value="Mr.">Mr.</option>
 								<option value="Mrs.">Mrs.</option>
 								<option value="Ms.">Ms.</option>
@@ -74,7 +82,7 @@ Staff
 							<select name="org_id">
 								<option value="" disabled selected>Choose your organization</option>
 								@foreach($organization as $org)
-								<option value="{{ $org->org_id }}">{{ $org->org_name }}</option>
+								<option value="{{ $org->id }}">{{ $org->org_name }}</option>
 								@endforeach
 							</select>							
 							<label>Choos Organization</label>           

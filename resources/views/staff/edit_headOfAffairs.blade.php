@@ -20,7 +20,7 @@ Staff
     <div class="row">
         <div class="col s12 m12 l12">
             <div class="card-panel">
-               <form method="POST" action="presidentForAcademic/update/{{ $staffs->staf_id }}">
+               <form method="POST" action="presidentForAcademic/update/{{ $staffs->id }}">
                     <div class="col l12 m12 s12"><h4>Please Enter Your Information</h4></div><br><br><br><br>
 
                     <div class="row">

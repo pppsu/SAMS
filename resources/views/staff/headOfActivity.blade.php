@@ -31,11 +31,7 @@ Staff
 			<div class="col l1 m1 s12"><a href="addHeadOfStudentActivity" class="btn">add</a></div>
 
 			<div class="col l6 m6 s12 offset-l4	">
-				<div class="input-field" style="">
-					<i class="material-icons prefix">search</i>
-					<input placeholder="PSU Passport" id="icon_prefix" type="text" class="validate">
-					<label for="icon_prefix">Search</label>
-				</div>
+				
 			</div>
 		</div>
 	</div>
@@ -60,8 +56,8 @@ Staff
 			<td>{{ $s->end_date }}</td>
 			<td>{{ $s->email }}</td>
 			<td>
-				<a href="editHeadOfStudentActivity_{{ $s->staf_id }}"><i class="Tiny material-icons ">mode_edit</i></a>
-				<a href="headOfActivity/delete/{{ $s->staf_id }}"><i class="Tiny material-icons " style="color: red">delete</i></a>
+				<a href="editHeadOfStudentActivity_{{ $s->id }}"><i class="Tiny material-icons ">mode_edit</i></a>
+				<a href="headOfActivity/delete/{{ $s->id }}"><i class="Tiny material-icons " style="color: red">delete</i></a>
 			</td>
 		</tr>
 		@endforeach

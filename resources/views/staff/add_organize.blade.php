@@ -20,13 +20,22 @@ Staff
 	<div class="row">
 		<div class="col s12 m12 l12">
 			<div class="card-panel ">
+				@if ( count($errors) > 0 )
+				<div class="card-panel red accent-1">
+					<ul>
+						@foreach ($errors->all() as $error)
+						<li>{{$error}}</li>
+						@endforeach
+					</ul>
+				</div>
+				@endif
 				<form method="POST" action="addOrganization">
 					<div class="col l12 m12 s12"><h4>Please Enter you information</h4></div><br><br><br><br>
 
 					<div class="row">
 						<div class="input-field  col s12 l6 m6">
-							<input id="Organization Name" type="text" name="org_name">
-							<label for="first_name">Organization Name</label>
+							<input id="org_name" type="text" name="org_name">
+							<label for="org_name">Organization Name</label>
 						</div>
 					</div>
 					<div class="row">

@@ -20,6 +20,15 @@ Staff
 	<div class="row">
 		<div class="col s12 m12 l12">
 			<div class="card-panel">
+			@if ( count($errors) > 0 )
+				<div class="card-panel red accent-1">
+					<ul>
+						@foreach ($errors->all() as $error)
+						<li>{{$error}}</li>
+						@endforeach
+					</ul>
+				</div>
+				@endif
 				<form method="POST" action="addStudentCouncil">
 					<div class="col l12 m12 s12"><h4>Please Enter Your Information</h4></div><br><br><br><br>
 
@@ -38,7 +47,6 @@ Staff
 					<div class="row">
 						<div class="input-field col s12 l3 m3">
 							<select name="title">
-								<option value="" disabled selected>Choose your title</option>
 								<option value="Mr.">Mr.</option>
 								<option value="Mrs.">Mrs.</option>
 								<option value="Ms.">Ms.</option>

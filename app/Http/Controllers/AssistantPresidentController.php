@@ -5,28 +5,47 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Staff;
 use Redirect;
+use Validator;
 
 class AssistantPresidentController extends Controller
 {
-
-     public function __construct()
-    {
-        $this->middleware('auth');
-    }
-    
     public function index() {
-        $staffs = Staff::where('role','=','Assistant to the President for Student Development')->paginate(20);
-        $staffs->setPath('presidentForStudent');
+        $staffs = Staff::where('role','=','Assistant to the President for Student Development')->get();
 
         return view('staff.presidentForStudent')->with('staffs',$staffs);
     }
-
+    
     public function create() {
-        return view('staff.addPresidentForStudent');
+    	return view('staff.addPresidentForStudent');
     }
 
     public function insert(Request $request) {
-        $staffs = new Staff;
+
+         $rules = [
+        'id' => 'required',
+
+        'firstname' => 'required',
+        'lastname' => 'required',
+        'email' => 'required',
+        'begin_date' => 'required',
+        'end_date' => 'required'     
+        ];
+
+        $messages = [
+        'id.required' => 'Please Enter Adviser ID',
+
+        'firstname.required' => 'Please Enter Name',
+        'lastname.required' => 'Please Enter Lastname',
+        'email.required' => 'Please Enter Email',
+        'begin_date.required' => 'Please Enter Begin Date',
+        'end_date.required' => 'Please Enter End Date',
+
+        ];
+        $validator = Validator::make($request->all(),$rules, $messages); 
+        /*$validator = Validator::make($request->all(),$rules);*/
+        
+        if ($validator->passes() ){
+            $staffs = new Staff;
         $staffs->psu_passport = $request->input('id');
         $staffs->title = $request->input('title');
         $staffs->firstname = $request->input('firstname');
@@ -35,19 +54,14 @@ class AssistantPresidentController extends Controller
         $staffs->email = $request->input('email');
         $staffs->begin_date = $request->input('begin_date');
         $staffs->end_date = $request->input('end_date');
+            $student->save();
 
-        $staffs->save();
-
-        $user = new User;
-        $user->psu_pass = $request->input('id');
-        $user->name = $request->input('firstname');
-        $user->email = $request->input('email');
-        $user->password = bcrypt($request->input('phone'));
-        $user->admin = 3;
-
-        $user->save();
-
-        return Redirect::to('presidentForStudent');
+            return Redirect::to('presidentForStudent');
+        }
+        else{
+            return Redirect::to('/addPresidentForStudent')
+            ->withErrors($validator->messages());
+        }
     }
 
     public function edit($id) {

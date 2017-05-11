@@ -5,14 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Staff;
 use Redirect;
+use Validator;
 
 class HeadActivityController extends Controller
 {   
-     public function __construct()
-    {
-        $this->middleware('auth');
-    }
-    
     public function index() {
         $staffs = Staff::where('role','=','Head of Student Activity Section')->paginate(20);
         $staffs->setPath('headOfActivity');
@@ -25,28 +21,48 @@ class HeadActivityController extends Controller
     }
 
     public function insert(Request $request) {
-    	$staffs = new Staff;
-    	$staffs->psu_passport = $request->input('id');
-    	$staffs->title = $request->input('title');
-    	$staffs->firstname = $request->input('firstname');
-    	$staffs->lastname = $request->input('lastname');
-    	$staffs->role = "Head of Student Activity Section";
-    	$staffs->email = $request->input('email');
-    	$staffs->begin_date = $request->input('begin_date');
-    	$staffs->end_date = $request->input('end_date');
+    	
+        $rules = [
+        'id' => 'required',
 
-    	$staffs->save();
+        'firstname' => 'required',
+        'lastname' => 'required',
+        'email' => 'required',
+        'begin_date' => 'required',
+        'end_date' => 'required'     
+        ];
 
-        $user = new User;
-        $user->psu_pass = $request->input('id');
-        $user->name = $request->input('firstname');
-        $user->email = $request->input('email');
-        $user->password = bcrypt($request->input('phone'));
-        $user->admin = 3;
+        $messages = [
+        'id.required' => 'Please Enter ID',
 
-        $user->save();
+        'firstname.required' => 'Please Enter Name',
+        'lastname.required' => 'Please Enter Lastname',
+        'email.required' => 'Please Enter Email',
+        'begin_date.required' => 'Please Enter Begin Date',
+        'end_date.required' => 'Please Enter End Date',
 
-    	return Redirect::to('headOfActivity');
+        ];
+        $validator = Validator::make($request->all(),$rules, $messages); 
+        /*$validator = Validator::make($request->all(),$rules);*/
+        
+        if ($validator->passes() ){
+            $staffs = new Staff;
+            $staffs->psu_passport = $request->input('id');
+            $staffs->title = $request->input('title');
+            $staffs->firstname = $request->input('firstname');
+            $staffs->lastname = $request->input('lastname');
+            $staffs->role = "Head of Student Activity Section";
+            $staffs->email = $request->input('email');
+            $staffs->begin_date = $request->input('begin_date');
+            $staffs->end_date = $request->input('end_date');
+            $student->save();
+
+            return Redirect::to('headOfActivity');
+        }
+        else{
+            return Redirect::to('/addHeadOfStudentActivity')
+            ->withErrors($validator->messages());
+        }
     }
 
     public function edit($id) {

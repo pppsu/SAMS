@@ -1,40 +1,40 @@
-/* 
-label color
+
+/* label color */
    .input-field label {
-     color: #ff3d00;
+     color: #000 ;
    } 
    .input-field-blue label {
-     color: #ff3d00;
+     color: #00b0ff  ;
    } 
    .input-field-ff1744  label {
-     color: #ff3d00;
+     color: #00b0ff  ;
    } 
    .input-field-green label {
-     color: #ff3d00;
+     color: #76ff03   ;
    } 
    .input-field-edit label {
-    color: #ff3d00;
+     color: #ff3d00   ;
    } 
-   label focus color
+   /* label focus color */
    .input-field input[type=text]:focus + label {
      color: #ff3d00;
    }
-   label underline focus color
-   .input-field-pp input[type=text]:focus {
-     border-bottom: 1px solid #ff3d00;
-     box-shadow: 0 1px 0 0 #ff3d00;
+   /* label underline focus color */
+   .input-field input[type=text]:focus {
+     border-bottom: 1px solid #ffb300 ;
+     box-shadow: 0 1px 0 0 #ffb300 ;
    }
-   valid color
+   /* valid color */
    .input-field input[type=text].valid {
      border-bottom: 1px solid #ff3d00;
      box-shadow: 0 1px 0 0 #ff3d00;
    }
-   invalid color
+   /* invalid color */
    .input-field input[type=text].invalid {
      border-bottom: 1px solid #ff3d00 ;
      box-shadow: 0 1px 0 0 #ff3d00 ;
    }
-   icon prefix focus color
+   /* icon prefix focus color */
    .input-field .prefix.active {
      color: #ff3d00;
    }
@@ -44,10 +44,10 @@ label color
   display: none;
 }
 
-.radio-item1 label {
+/* .radio-item1 label {
   color: #666;
   font-weight: normal;
-}
+} */
 
 .radio-item1 label:before {
   content: " ";
@@ -93,7 +93,7 @@ label color
   content: " ";
   background: #ff3d00;
 }
-.radio-edit label:before {
+/* .radio-edit label:before {
   content: " ";
   display: inline;
   font-size: 30px;
@@ -113,7 +113,7 @@ label color
   line-height: 18px;
   content: " ";
   background: #76ff03;
-}
+} */
 .body{
     position: absolute;
     top: -20px;
@@ -122,10 +122,9 @@ label color
     bottom: -40px;
     width: auto;
     height: auto;
-    background-image: url(http://ginva.com/wp-content/uploads/2012/07/city-skyline-wallpapers-008.jpg);
+    /* background-image: url(http://ginva.com/wp-content/uploads/2012/07/city-skyline-wallpapers-008.jpg); */
     background-image: url(http://www.uppic.org/thumb-2FB8_582B13C6.jpg);
     background-size: cover;
     -webkit-filter: blur(5px);
     z-index: 0;
 }
- */

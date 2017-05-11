@@ -16,7 +16,6 @@ class ComposerStaticInit673ca7334787fbfb61dc906ac5c9e0f3
         'e7223560d890eab89cda23685e711e2c' => __DIR__ . '/..' . '/psy/psysh/src/Psy/functions.php',
         'f0906e6318348a765ffb6eb24e0d0938' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Foundation/helpers.php',
         '58571171fd5812e6e447dce228f52f4d' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Support/helpers.php',
-        '752af1c2bdb339e8474c3c31b22b7d54' => __DIR__ . '/..' . '/illuminate/html/helpers.php',
     );
 
     public static $prefixLengthsPsr4 = array (
@@ -72,7 +71,6 @@ class ComposerStaticInit673ca7334787fbfb61dc906ac5c9e0f3
         ),
         'I' => 
         array (
-            'Illuminate\\Html\\' => 16,
             'Illuminate\\' => 11,
         ),
         'F' => 
@@ -204,10 +202,6 @@ class ComposerStaticInit673ca7334787fbfb61dc906ac5c9e0f3
         array (
             0 => __DIR__ . '/..' . '/league/flysystem/src',
         ),
-        'Illuminate\\Html\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/illuminate/html',
-        ),
         'Illuminate\\' => 
         array (
             0 => __DIR__ . '/..' . '/laravel/framework/src/Illuminate',
@@ -282,7 +276,6 @@ class ComposerStaticInit673ca7334787fbfb61dc906ac5c9e0f3
     );
 
     public static $classMap = array (
-        'CreateDocumentTable' => __DIR__ . '/../..' . '/database/migrations/2017_04_25_135504_create_document_table.php',
         'CreateOrganizationTable' => __DIR__ . '/../..' . '/database/migrations/2017_03_02_074705_create_organization_table.php',
         'CreatePasswordResetsTable' => __DIR__ . '/../..' . '/database/migrations/2014_10_12_100000_create_password_resets_table.php',
         'CreateStaffTable' => __DIR__ . '/../..' . '/database/migrations/2017_02_23_072401_create_staff_table.php',
@@ -819,7 +812,8 @@ class ComposerStaticInit673ca7334787fbfb61dc906ac5c9e0f3
         'SebastianBergmann\\RecursionContext\\InvalidArgumentException' => __DIR__ . '/..' . '/sebastian/recursion-context/src/InvalidArgumentException.php',
         'SebastianBergmann\\ResourceOperations\\ResourceOperations' => __DIR__ . '/..' . '/sebastian/resource-operations/src/ResourceOperations.php',
         'SebastianBergmann\\Version' => __DIR__ . '/..' . '/sebastian/version/src/Version.php',
-        'StaffTableSeeder' => __DIR__ . '/../..' . '/database/seeds/DatabaseSeeder.php',
+        'StaffTableSeeder' => __DIR__ . '/../..' . '/database/seeds/StaffTableSeeder.php',
+        'StudentTableSeeder' => __DIR__ . '/../..' . '/database/seeds/StudentTableSeeder.php',
         'TestCase' => __DIR__ . '/../..' . '/tests/TestCase.php',
         'Text_Template' => __DIR__ . '/..' . '/phpunit/php-text-template/src/Template.php',
     );

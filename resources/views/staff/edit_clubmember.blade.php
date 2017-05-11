@@ -14,7 +14,7 @@ Staff
 </section>
 <section>
 	<div class="row">
-		<form method="POST" action="Member/update/{{ $student->stu_id }}">
+		<form method="POST" action="Member/update/{{ $student->id }}">
 					<div class="col l12 m12 s12"><h4>Please Enter Your Information</h4></div><br><br><br><br>
 
 					<div class="row">
@@ -71,10 +71,10 @@ Staff
 							<select name="org_id">
 								<option value="" disabled>Choose your organization</option>
 								@foreach($organization as $org)
-									@if ($student->org_id == $org->org_id)
-										<option value="{{ $org->org_id }}" selected>{{ $org->org_name }}</option>
+									@if ($student->org_id == $org->id)
+										<option value="{{ $org->id }}" selected>{{ $org->org_name }}</option>
 									@else
-										<option value="{{ $org->org_id }}">{{ $org->org_name }}</option>
+										<option value="{{ $org->id }}">{{ $org->org_name }}</option>
 									@endif
 								@endforeach
 							</select>							

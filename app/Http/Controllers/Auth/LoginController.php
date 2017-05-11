@@ -25,8 +25,8 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/document';
-    protected $redirectToAdmin = '/studentUnion';
+    protected $redirectTo = '/home';
+
     /**
      * Create a new controller instance.
      *
@@ -35,17 +35,5 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest', ['except' => 'logout']);
-    }
-
-    public function redirectPath()
-    {
-        if(auth()->user()->isAdmin()){
-          return property_exists($this, 'redirectToAdmin') ? $this->redirectToAdmin : '/';
-        }
-        else if (property_exists($this, 'redirectPath')) {
-            return $this->redirectPath;
-        }
-
-        return property_exists($this, 'redirectTo') ? $this->redirectTo : '/';
     }
 }

@@ -5,16 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Staff;
 use Redirect;
+use Validator;
 
 class VicePresidentController extends Controller
 {
-
-     public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
-    
     public function index() {
         $staffs = Staff::where('role','=','Vice President for Academic Affairs')->paginate(20);
         $staffs->setPath('presidentForAcademic');
@@ -27,28 +21,48 @@ class VicePresidentController extends Controller
     }
 
     public function insert(Request $request) {
-    	$staffs = new Staff;
-    	$staffs->psu_passport = $request->input('id');
-    	$staffs->title = $request->input('title');
-    	$staffs->firstname = $request->input('firstname');
-    	$staffs->lastname = $request->input('lastname');
-    	$staffs->role = "Vice President for Academic Affairs";
-    	$staffs->email = $request->input('email');
-    	$staffs->begin_date = $request->input('begin_date');
-    	$staffs->end_date = $request->input('end_date');
 
-    	$staffs->save();
+        $rules = [
+        'id' => 'required',
 
-                $user = new User;
-        $user->psu_pass = $request->input('id');
-        $user->name = $request->input('firstname');
-        $user->email = $request->input('email');
-        $user->password = bcrypt($request->input('phone'));
-        $user->admin = 3;
+        'firstname' => 'required',
+        'lastname' => 'required',
+        'email' => 'required',
+        'begin_date' => 'required',
+        'end_date' => 'required'     
+        ];
 
-        $user->save();
+        $messages = [
+        'id.required' => 'Please Enter Adviser ID',
+
+        'firstname.required' => 'Please Enter Name',
+        'lastname.required' => 'Please Enter Lastname',
+        'email.required' => 'Please Enter Email',
+        'begin_date.required' => 'Please Enter Begin Date',
+        'end_date.required' => 'Please Enter End Date',
+
+        ];
+        $validator = Validator::make($request->all(),$rules, $messages); 
+        /*$validator = Validator::make($request->all(),$rules);*/
         
-    	return Redirect::to('presidentForAcademic');
+        if ($validator->passes() ){
+           $staffs = new Staff;
+        $staffs->psu_passport = $request->input('id');
+        $staffs->title = $request->input('title');
+        $staffs->firstname = $request->input('firstname');
+        $staffs->lastname = $request->input('lastname');
+        $staffs->role = "Vice President for Academic Affairs";
+        $staffs->email = $request->input('email');
+        $staffs->begin_date = $request->input('begin_date');
+        $staffs->end_date = $request->input('end_date');
+            $student->save();
+
+            return Redirect::to('presidentForAcademic');
+        }
+        else{
+            return Redirect::to('/addPresidentForAcademic')
+            ->withErrors($validator->messages());
+        }
     }
 
     public function edit($id) {

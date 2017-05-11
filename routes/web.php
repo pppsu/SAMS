@@ -1,7 +1,5 @@
 <?php
 
-use App\user;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,12 +12,12 @@ use App\user;
 */
 
 Route::get('/', function () {
-    return view('auth.login');
+    return view('welcome');
 });
 
-// Route::get('/login', function () {
-//     return view('auth.login');
-// });
+Route::get('/login', function () {
+    return view('auth.login');
+});
 
 Route::get('/staff', function () {
     return view('staff.home');
@@ -37,10 +35,6 @@ Route::get('/headOfAffairs', function () {
     return view('staff.headOfAffairs');
 });
 
-Route::get('/presidentForStudent', function () {
-    return view('staff.presidentForStudent');
-});
-
 Route::get('/presidentForAcademic', function () {
     return view('staff.presidentForAcademic');
 });
@@ -52,22 +46,18 @@ Route::get('/login2', function () {
     return view('auth.login2');
 });
 
+Route::get('/from', function () {
+    return view('pp.fromtwo');
+});
 
+Route::get('/createdocument', function () {
+    return view('student.index');
+});
 
 Route::get('/student_lay', function () {
     return view('staff.stley');
 });
 
-Route::get('/approve', function () {
-    return view('president.president');
-});
-
-
-Auth::routes();
-
-Route::get('/home', 'HomeController@index');
-
-Route::group(['middleware'=>'adminMiddleware'], function () {
 //Finish
 
 //StudentUnion
@@ -163,7 +153,3 @@ Route::post('/organizeation/update/{id}', 'OrganizationController@update');
 Route::get('/organizeation/delete/{id}', 'OrganizationController@destroy');
 //-------------------------------------------------------------------------
 
-});
-
-Route::resource('document','DocumentController');
-Route::delete('document/delete/{id}','DocumentController@destroy');

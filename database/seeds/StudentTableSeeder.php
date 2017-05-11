@@ -1,0 +1,156 @@
+<?php
+
+use Illuminate\Database\Seeder;
+use App\Student;
+
+class StudentTableSeeder extends Seeder
+{
+    /**
+     * Run the database seeds.
+     *
+     * @return void
+     */
+    public function run()
+    {
+        DB::table('students')->delete();
+
+        $students = [
+        [   "psu_passport"=>'5630213024',
+        "title"=>'Mr.',
+        "firstname"=>'Thirawat',
+        "lastname"=>'Sae-siew',
+        "faculty"=>'TE',
+        "major"=>'SE',
+        "org_id"=>'70',
+        "position"=>'President',
+        "role"=>'Member',
+        "begin_date"=>'2017-03-15',
+        "end_date"=>'2017-12-01',
+        "phone"=>'026777775',
+        "email"=>'thira@email.com',
+        ],
+        [   "psu_passport"=>'5630213048',
+        "title"=>'Mr.',
+        "firstname"=>'PATAVEE',
+        "lastname"=>'TEPSONG',
+        "faculty"=>'TE',
+        "major"=>'SE',
+        "org_id"=>'70',
+        "position"=>'Vic President',
+        "role"=>'Member',
+        "begin_date"=>'2017-03-15',
+        "end_date"=>'2017-12-01',
+        "phone"=>'02666775',
+        "email"=>'patavee@email.com',
+        ],
+        [   "psu_passport"=>'5630213040',
+        "title"=>'Mr.',
+        "firstname"=>'THONGCHAI',
+        "lastname"=>'RAWANGKHAEM',
+        "faculty"=>'TE',
+        "major"=>'SE',
+        "org_id"=>'70',
+        "position"=>'Secretary',
+        "role"=>'Member',
+        "begin_date"=>'2017-03-15',
+        "end_date"=>'2017-12-01',
+        "phone"=>'026662435',
+        "email"=>'thongchai@email.com',
+        ],
+        [   "psu_passport"=>'5630213014',
+        "title"=>'Mrs.',
+        "firstname"=>'UMAPORN',
+        "lastname"=>'TUNLANG',
+        "faculty"=>'TE',
+        "major"=>'SE',
+        "org_id"=>'73',
+        "position"=>'President',
+        "role"=>'Member',
+        "begin_date"=>'2017-03-20',
+        "end_date"=>'2017-12-22',
+        "phone"=>'026665555',
+        "email"=>'uma@email.com',
+        ],
+        [   "psu_passport"=>'5630213004',
+        "title"=>'Mrs.',
+        "firstname"=>'RATTANAPORN',
+        "lastname"=>'SOMNUK',
+        "faculty"=>'TE',
+        "major"=>'SE',
+        "org_id"=>'73',
+        "position"=>'Vic President',
+        "role"=>'Member',
+        "begin_date"=>'2017-03-20',
+        "end_date"=>'2017-12-22',
+        "phone"=>'026666555',
+        "email"=>'ratanaporn@email.com',
+        ],
+        [   "psu_passport"=>'5630213005',
+        "title"=>'Mrs.',
+        "firstname"=>'PETCHADA',
+        "lastname"=>'CHOOMSAI NA AYUTTHAYA',
+        "faculty"=>'TE',
+        "major"=>'SE',
+        "org_id"=>'73',
+        "position"=>'Secretary',
+        "role"=>'Member',
+        "begin_date"=>'2017-03-20',
+        "end_date"=>'2017-12-22',
+        "phone"=>'026688855',
+        "email"=>'patchada@email.com',
+        ],
+        [   "psu_passport"=>'5630213023',
+        "title"=>'Mrs.',
+        "firstname"=>'NICHAPAT',
+        "lastname"=>'LOJANAPIWAT',
+        "faculty"=>'TE',
+        "major"=>'SE',
+        "org_id"=>'72',
+        "position"=>'President',
+        "role"=>'Member',
+        "begin_date"=>'2017-03-15',
+        "end_date"=>'2017-12-15',
+        "phone"=>'098688855',
+        "email"=>'nichapat@email.com',
+        ],
+        [   "psu_passport"=>'5630213033',
+        "title"=>'Mr.',
+        "firstname"=>'JAEDSADA',
+        "lastname"=>'CHAISORN',
+        "faculty"=>'TE',
+        "major"=>'SE',
+        "org_id"=>'72',
+        "position"=>'Vic President',
+        "role"=>'Member',
+        "begin_date"=>'2017-03-15',
+        "end_date"=>'2017-12-15',
+        "phone"=>'095718855',
+        "email"=>'jaedsada@email.com',
+        ],
+        [   "psu_passport"=>'5630213035',
+        "title"=>'Mrs.',
+        "firstname"=>'KITTIPAT',
+        "lastname"=>'TEEHOR',
+        "faculty"=>'TE',
+        "major"=>'SE',
+        "org_id"=>'72',
+        "position"=>'Secretary',
+        "role"=>'Member',
+        "begin_date"=>'2017-03-15',
+        "end_date"=>'2017-12-15',
+        "phone"=>'095479855',
+        "email"=>'kitti@email.com',
+        ],
+
+
+
+
+        
+        ];
+
+        foreach ($students as $s) {
+            Student::create($s);
+        }
+
+    }
+}
